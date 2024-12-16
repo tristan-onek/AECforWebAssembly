@@ -167,3 +167,10 @@ bool ends_with(
     return false;
   return first.substr(first.size() - second.size()) == second;
 }
+
+std::string demanglePointerType(std::string pointerType) {
+  if (pointerType.substr(0, std::string("PointerTo").size()) == "PointerTo")
+    return demanglePointerType(
+        pointerType.substr(std::string("PointerTo").size()) + "Pointer");
+  return pointerType;
+}

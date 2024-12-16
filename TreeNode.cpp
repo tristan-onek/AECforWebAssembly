@@ -48,6 +48,14 @@ protected:
       auto stringsInChild = child.getStringsInSubnodes();
       setToBeReturned.insert(stringsInChild.begin(), stringsInChild.end());
     }
+    // Now follows the code for the `TypeOf` operator. You can read more about
+    // it here: https://langdev.stackexchange.com/q/4189/330
+    for (auto basicDataType : basicDataTypeSizes)
+      setToBeReturned.insert("\"" + basicDataType.first + "\"");
+    if (isPointerType(text))
+      setToBeReturned.insert("\"" + demanglePointerType(text) + "\"");
+    if (text == "Structure")
+      setToBeReturned.insert("\"" + children.at(0).text + "\"");
     return setToBeReturned;
   }
 

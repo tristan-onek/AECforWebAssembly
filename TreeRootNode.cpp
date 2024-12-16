@@ -170,7 +170,7 @@ public:
       context.globalVariablePointer += string.size() - 1;
     }
     for (auto childNode : children) {
-      if (basicDataTypeSizes.count(childNode.text) ||
+      if (basicDataTypeSizes.count(childNode.text) or
           isPointerType(childNode.text)) { // Global variable declaration
         for (auto variableName : childNode.children) {
           if (!isValidVariableName(variableName.text) or
